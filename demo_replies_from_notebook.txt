@@ -1,0 +1,186 @@
+Q: Which postings mention retrieval-augmented generation, vector databases, or LLM application development?
+(backend=faiss)
+
+# Postings Mentioning Retrieval-Augmented Generation, Vector Databases, or LLM Application Development
+
+Based on the provided evidence, I can identify postings that mention LLM application development, but **none explicitly mention retrieval-augmented generation or vector databases**:
+
+**Postings with LLM application development:**
+
+- [1] **LLM Data Scientist — SS&C Technologies**: Mentions "Large Language Model (LLM) Expertise: Leverage your expertise in working with large language models" and advanced NLP model development.
+
+- [2] **Sr. Software Engineer, Search Relevance — Moveworks**: While not explicitly calling it RAG, this posting describes building "search based question answering platform" that combines "information retrieval methodology with the latest advancement in natural language understanding" and involves "accurately retrieving, matching and ranking text snippets" — which is functionally similar to retrieval-augmented generation.
+
+- [4] **Data Scientist — hackajob (McLean, VA)** [job_id: 3905875688]: Mentions "Develop and train Large Language Models (LLMs)" and "innovative implementation of LLMs."
+
+- [5] **Data Scientist — hackajob (McLean, VA)** [job_id: 3905875652]: Same as [4] — mentions "Develop and train Large Language Models (LLMs)" and "innovative implementation of LLMs."
+
+**Notable absence**: No postings in the evidence explicitly mention vector databases or use the term "retrieval-augmented generation."
+
+Citations:
+  [1] job_id=3904938734 | LLM Data Scientist | SS&C Technologies | Boston, MA | score=0.465
+      "scope of work includes Forecast, Prediction Models, Outlier Reporting, Risk Analysis, Document classification, Data Extraction, Adhoc analysis.Implementation of..."
+  [2] job_id=3904389721 | Sr. Software Engineer, Search Relevance | Moveworks | Mountain View, CA | score=0.462
+      "We are looking for a sr. search relevance engineer to work with a team to improve a search based question answering platform. At Moveworks, we build search tech..."
+  [3] job_id=3905287203 | Senior Machine Learning Engineer | GeneDx | United States | score=0.453
+      "advanced NLP techniques such as named entity recognition, sentiment analysis, and text summarization to enhance report generationContinuously monitor, analyze,..."
+  [4] job_id=3905875688 | Data Scientist | hackajob | McLean, VA | score=0.451
+      "contribute to formulating recommendations for enhancing engineering solutions. Key Responsibilities Develop and train Large Language Models (LLMs) to support th..."
+  [5] job_id=3905875652 | Data Scientist | hackajob | McLean, VA | score=0.451
+      "contribute to formulating recommendations for enhancing engineering solutions. Key Responsibilities Develop and train Large Language Models (LLMs) to support th..."
+
+Q: Which skills distinguish Machine Learning Engineer roles from Data Scientist roles?
+(backend=faiss)
+
+# Skills That Distinguish Machine Learning Engineers from Data Scientists
+
+Based on the evidence provided, the key distinguishing skills are:
+
+## Machine Learning Engineer Skills:
+
+**Implementation and Production Focus:**
+- [1] Deploy machine learning models into production environments and work closely with DevOps teams to ensure scalability, reliability, and security
+- [5] Design and implement infrastructure and platform components for training, deploying, and monitoring machine learning models in production
+- [5] Build pipelines to ingest data from myriad sources into a centralized data lake
+
+**Model Operations and Monitoring:**
+- [1] Implement monitoring solutions to track model performance in real-time and continuously fine-tune and optimize models
+
+**Leadership in Implementation:**
+- [4] The manager is "looking for a Machine Learning engineer that can truly implement/lead. Traditionally Data Scientists do not do this."
+
+## Key Distinction:
+
+The evidence explicitly states [4] that "This manager is NOT looking for a Data Scientist, instead he's looking for a Machine Learning engineer that can truly implement/lead. Traditionally Data Scientists do not do this."
+
+**Note:** The evidence provided focuses on Machine Learning Engineer responsibilities but does not include comparable Data Scientist job descriptions, so a complete comparison of all distinguishing skills cannot be made based solely on the information given.
+
+Citations:
+  [1] job_id=3905869109 | Lead Machine Learning Engineer | Confidential Jobs | United States | score=0.624
+      "from data to improve model performance.Utilize domain knowledge to engineer features that capture important patterns.Model Deployment:Deploy machine learning mo..."
+  [2] job_id=3899540477 | Machine Learning Engineer | Cloud Resources LLC | New York, NY | score=0.621
+      "Company Description Cloud Resources is a highly motivated and results-oriented consulting firm specializing in next-generation Software Development, Technology,..."
+  [3] job_id=3901980816 | Machine Learning Researcher, Machine Learning Operations Engineer, Sr. Software Developer, Assoc Software Developer | Deep Voodoo | California, United States | score=0.604
+      "Direct hire only, no 3rd party. 1 ML Researcher1 ML Operations Engineer1 Sr Software Engineer3 Assoc. Software Developer All rolls are remote. Reach out for any..."
+  [4] job_id=3902371576 | Machine Learning Engineer | Indotronix Avani Group | Pennsylvania, United States | score=0.602
+      "Position: Machine Learning EngineerIntended length of assignment: 6 Months to Hire Location: Hybrid - 3 in office, 2 remote1st preference Tech Hubs (Pittsburgh,..."
+  [5] job_id=3902861372 | Staff Machine Learning Engineer (Customer Identity) | Okta | United States | score=0.598
+      "machine learning. Additionally, the candidate will have interest in learning about and potentially contributing toward cutting edge open source Machine Learning..."
+
+Q: Given Python, SQL, Docker, and NLP experience, what adjacent roles are relevant and which skills are most commonly missing?
+(backend=faiss)
+
+# Adjacent Roles and Missing Skills Analysis
+
+Based on the evidence provided, here are the relevant adjacent roles and commonly missing skills:
+
+## Adjacent Relevant Roles
+
+1. **Senior Lead Software Engineer** (ML/Data focus) [4] — Combines your Python, SQL, and Docker expertise with machine learning specialization
+2. **Lead Python Backend Engineer** [1][2] — Leverages your Python and SQL skills with cloud infrastructure focus
+3. **Senior Software Engineer (ETL/Data)** [3][5] — Utilizes SQL expertise in data pipeline roles
+
+## Most Commonly Missing Skills
+
+Based on job requirements across these roles:
+
+1. **Cloud Platforms** — AWS environment experience is heavily emphasized [1][2], appearing as a core requirement
+2. **Machine Learning Frameworks** — TensorFlow, PyTorch, or Scikit-learn [4] represent a major gap for NLP-adjacent roles
+3. **Data Tools & Libraries** — Pandas, NumPy, and data manipulation tools [4] are frequently required
+4. **REST APIs** — Strong REST API knowledge [1][2] appears consistently
+5. **Additional Backend Languages** — Java or Golang experience [1][2] complements Python
+6. **Workflow Orchestration** — Airflow [4] is mentioned alongside your Docker skills
+7. **Version Control Best Practices** — GitHub workflows [4]
+
+The evidence suggests that **cloud platform expertise (AWS)** and **machine learning frameworks** are the two most critical adjacent skill gaps for advancement into senior roles combining your existing competencies.
+
+Citations:
+  [1] job_id=3890893652 | Lead Python Backend Engineer | AllSTEM Connections | United States | score=0.601
+      "team.Ability to groom junior engineer and collaborate with peer engineers in the teamOther Job-Specific SkillsExperience working in a start-up / agile organizat..."
+  [2] job_id=3886896689 | Lead Python Backend Engineer | AllSTEM Connections | United States | score=0.601
+      "team.Ability to groom junior engineer and collaborate with peer engineers in the teamOther Job-Specific SkillsExperience working in a start-up / agile organizat..."
+  [3] job_id=3903823788 | Senior Software Engineer-(Mainframe/ SQL/ ETL) | Fidelity Investments | Durham, NC | score=0.590
+      "and MIPs, using Strobe, iStrobe, and Platinum Detector Experience in navigating in an Oracle database environment for triage purposes File format and comparison..."
+  [4] job_id=3895255016 | Senior Lead Software Engineer | NAVEX | Portland, Oregon Metropolitan Area | score=0.588
+      "with the ability to learn and come up to speed on new technologies quicklyExperience with the following technologies: - Python and SQL - Machine learning framew..."
+  [5] job_id=3903821894 | Senior Software Engineer-(Mainframe/ SQL/ ETL) | Fidelity Investments | Smithfield, RI | score=0.587
+      "and MIPs, using Strobe, iStrobe, and Platinum Detector Experience in navigating in an Oracle database environment for triage purposes File format and comparison..."
+
+
+Using GRAPH:
+
+'Data Engineer' postings appear at 253 companies; 'Machine Learning Engineer' postings appear at 99 companies.
+
+Companies hiring for BOTH roles (12):
+
+- Akkodis
+    Data Engineer job_ids: [3894213406, 3894299338, 3894400441]
+    Machine Learning Engineer job_ids: [3901166848, 3901803271]
+    Shared skills at this company: Java, Machine Learning, Python, SQL, Spark, Statistics
+
+- Booz Allen Hamilton
+    Data Engineer job_ids: [3903846324, 3903846326]
+    Machine Learning Engineer job_ids: [3894616657]
+    Shared skills at this company: Agile, Machine Learning
+
+- Capital One
+    Data Engineer job_ids: [3885805686, 3885806687, 3885808491, 3885810350, 3885810353, 3894291104, 3902782722, 3902785272, 3902786201, 3903802633, 3904049996, 3904052744, 3904054114, 3904574894, 3904574897, 3904574898, 3904575804, 3904578558, 3904581374, 9900000, 9900001, 9900002]
+    Machine Learning Engineer job_ids: [3902780915, 3902780922, 3902780923, 3902780924, 3902781837]
+    Shared skills at this company: AWS, Agile, Azure, CI/CD, GCP, Java, Machine Learning, Python, SQL, Scala, Spark
+
+- ChabezTech LLC
+    Data Engineer job_ids: [3901349539]
+    Machine Learning Engineer job_ids: [3904730096]
+    Shared skills at this company: Azure, Python
+
+- Dice
+    Data Engineer job_ids: [3904950518, 3905873960, 3905885197]
+    Machine Learning Engineer job_ids: [3904950219, 3905886091]
+    Shared skills at this company: Python
+
+- Harnham
+    Data Engineer job_ids: [3906078214, 3906078751]
+    Machine Learning Engineer job_ids: [3905236643, 3906081231]
+    Shared skills at this company: Python, SQL
+
+- Mainz Brady Group
+    Data Engineer job_ids: [3884855386]
+    Machine Learning Engineer job_ids: [3891003141, 3891800645]
+    Shared skills at this company: Python, Spark
+
+- McKesson
+    Data Engineer job_ids: [3894953007]
+    Machine Learning Engineer job_ids: [3905345886]
+    Shared skills at this company: Azure, Python
+
+- Motion Recruitment
+    Data Engineer job_ids: [3895547335, 3901626774, 3904955360]
+    Machine Learning Engineer job_ids: [3888941778, 3888943511, 3888944326]
+    Shared skills at this company: (no shared skills extracted)
+
+- NLB Services
+    Data Engineer job_ids: [3905214221]
+    Machine Learning Engineer job_ids: [3871631334, 3887100819]
+    Shared skills at this company: Azure
+
+- Orbit Recruitment Group 
+    Data Engineer job_ids: [3905208625, 3905208753, 3905210695, 3905211480]
+    Machine Learning Engineer job_ids: [3905211810, 3905213817, 3905215365]
+    Shared skills at this company: AWS, Machine Learning, Python
+
+- TikTok
+    Data Engineer job_ids: [3888994430]
+    Machine Learning Engineer job_ids: [3895584708, 3895587299, 3895587302, 3895595256, 3904983008, 3905313958]
+    Shared skills at this company: Python
+
+Skills occurring across BOTH role types overall (ranked by combined mention count):
+  - Python
+  - SQL
+  - AWS
+  - Machine Learning
+  - Azure
+  - Spark
+  - ETL
+  - Agile
+  - Java
+  - Data Warehousing

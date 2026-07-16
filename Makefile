@@ -4,6 +4,7 @@ API_HOST ?= 127.0.0.1
 API_PORT ?= 8000
 API_URL  := http://$(API_HOST):$(API_PORT)
 
+
 .PHONY: help install notebook notebook-execute \
         api api-bg api-stop wait-for-api health \
         demo-rag demo-kg demo demo-auto \

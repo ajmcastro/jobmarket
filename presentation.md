@@ -12,8 +12,6 @@ Target: ~15 minutes, ~17 slides (~50s/slide average — title/agenda/closing go 
 
 ### RAG + Knowledge Graph over job-posting data
 
-*Presented to: Data Science / ML team*
-
 > **Important Remark**
 
 >This work was done using Visual Code with Copilot mainly in ask mode. Parts of the code were done in this way. For example, in implementing the networkx code, which is a framework that I did not know before.
@@ -38,9 +36,6 @@ Target: ~15 minutes, ~17 slides (~50s/slide average — title/agenda/closing go 
 6. Part 3 — Graph-RAG design
 7. Trade-offs & next steps
 
-> **Speaker notes:** Set expectations — three deliverables, each demonstrated on real output from the
-> sample data, then a design proposal for combining the first two.
-
 ---
 
 ## Problem & objective
@@ -59,7 +54,7 @@ Build a prototype that answers natural-language questions like:
 | 2 | Knowledge Graph | Working implementation |
 | 3 | Graph-RAG | Architectural design |
 
-> **Speaker notes:** Answers need to be grounded in the source data with traceable evidence — not free-form
+> **Notes:** Answers need to be grounded in the source data with traceable evidence — not free-form
 > LLM generation. That constraint shapes every design decision that follows.
 
 ---
@@ -74,12 +69,12 @@ Build a prototype that answers natural-language questions like:
 | `sample_skill_lookup.csv` | 35 | abbreviation → full name |
 | `sample_industries.csv` | 422 | industry_id → industry_name |
 
-**Two data-quality caveats that shaped the design:**
+**Two data-quality issues that impacted the design:**
 - `company_id` is frequently missing → can't always join postings ↔ companies structurally.
 - `sample_skills.csv` categories are too coarse for skill-level questions — fine-grained skills
   (Python, Docker, LLM…) have to be *extracted from free text*, not read from a column.
 
-> **Speaker notes:** These two caveats directly motivate the company-keying and skill-extraction decisions
+> **Notes:** These two issues directly motivate the company-keying and skill-extraction decisions
 > shown later.
 
 ---
@@ -117,8 +112,8 @@ flowchart TB
     Part2 -.would feed.-> Part3
 ```
 
-> **Speaker notes:** Parts 1 and 2 are independent, working implementations against the same source data.
-> Part 3 is a design for how they'd combine — not built, per the assignment's scope.
+> **Notes:** Parts 1 and 2 are independent, working implementations against the same source data.
+> Part 3 is a design for how they'd combine (not implemented).
 
 ---
 
@@ -139,7 +134,7 @@ flowchart LR
     H --> I
 ```
 
-> **Speaker notes:** Two vector backends run side by side purely to compare exact vs. quantized search at
+> **Notes:** Two vector backends run side by side purely to compare exact vs. quantized search at
 > this scale — more on that next slide. The mock-mode branch is what makes the whole notebook runnable with
 > zero API keys.
 
@@ -155,8 +150,9 @@ flowchart LR
 - **Citations are structural, not just a quote** — every answer returns `job_id`, title, company, location,
   and excerpt, so a reviewer can verify the source posting directly.
 
-> **Speaker notes:** The FAISS-vs-turbovec comparison in the notebook shows near-identical top-5 results and
+> **Notes:** The FAISS-vs-turbovec comparison in the notebook shows near-identical top-5 results and
 > scores — validates the quantized index without yet needing its main benefit (memory at scale).
+> A typical split-chunk strategy based in a fixed size is implemented in split_into_chunks. A slighthly improved version that considers sentence-aware boundaries is implemented in improved_split_into_chunks.
 
 ---
 
@@ -169,10 +165,9 @@ Top result: **LLM Data Scientist** @ SS&C Technologies (Boston, MA) — score 0.
 > classification, Data Extraction, Adhoc analysis. Implementation of Supervised and Unsupervised model
 > development techniques..."*
 
-Also surfaced: a Generative AI Engineer role, a TikTok GenAI/LLM research posting, and a GenAI-focused Data
-Scientist role at Deloitte — all found purely by semantic similarity, no keyword list required.
+Found purely by semantic similarity, no keyword list required.
 
-> **Speaker notes:** This is the "direct retrieval" demo type — open-ended, no fixed taxonomy, exactly what
+> **Notes:** This is the "direct retrieval" demo type — open-ended, no fixed taxonomy, exactly what
 > embeddings are good at. Note this ran in mock mode in this environment (no API key) — the citations and
 > retrieval quality are unaffected either way.
 
@@ -193,7 +188,7 @@ Built with **NetworkX** — no server, easy to inspect in-notebook, more than su
 **Not implemented:** `Industry` (no reliable join key in this sample), `Occupation`/ESCO enrichment
 (optional, out of scope), `Skill–RELATED_TO–Skill` (not needed for the target questions).
 
-> **Speaker notes:** Deliberately small schema — four node types, four edge types, chosen because they
+> **Notes:** Deliberately small schema — four node types, four edge types, chosen because they
 > directly answer the target question set, not because the suggested schema had more options.
 
 ---
@@ -205,12 +200,10 @@ Built with **NetworkX** — no server, easy to inspect in-notebook, more than su
 - **`Skill`** extracted from posting text via a curated ~50-term vocabulary with symbol-aware regex
   (handles `C++`, `CI/CD`, `Node.js`) — *not* `sample_skills.csv`'s coarse categories.
 - **`Company`** keyed by normalized name, not `company_id` — trades perfect de-dup for actually connecting
-  most postings to a company node.
-- **Bug caught during testing:** postings with a missing company name were initially merged into one fake
-  "Unknown company" node, fabricating a false bridging-company result — fixed by dropping the edge instead.
+  most postings to a company node (due to the fact of having the same company with different company_ids).
+- **Bug caught during testing:** postings with a missing company name instead of being merged into one fake
+  "Unknown company" node, fabricating a false bridging-company result, were dropped.
 
-> **Speaker notes:** That last point is worth calling out live — it's a concrete example of validating
-> results against the data, not just trusting the code compiled and ran.
 
 ---
 
@@ -228,7 +221,7 @@ Answered by **traversal + set intersection** — no query language needed at thi
 
 Every result carries the exact `job_id`s that justify it — fully traceable back to source postings.
 
-> **Speaker notes:** Graph size for reference: 6,757 nodes / 33,351 edges built from all 4,072 postings.
+> **Notes:** Graph size for reference: 6,757 nodes / 33,351 edges built from all 4,072 postings.
 > This is an exhaustive computation over the whole corpus, not a sample — the key advantage over pure vector
 > search, which the next section makes explicit.
 

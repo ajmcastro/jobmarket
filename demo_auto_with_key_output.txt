@@ -1,0 +1,339 @@
+make demo-auto
+uv run uvicorn api.main:app --host 127.0.0.1 --port 8000 > .api.log 2>&1 & echo $! > .api.pid
+Waiting for API at http://127.0.0.1:8000 ...
+API ready.
+=== RAG demo 1/2 — direct retrieval ===
+Q: Which postings mention retrieval-augmented generation, vector databases, or LLM application development?
+{
+    "query": "Which postings mention retrieval-augmented generation, vector databases, or LLM application development?",
+    "answer": "Based on the evidence provided, the following postings mention retrieval-augmented generation, vector databases, or LLM application development:\n\n**LLM Application Development:**\n- [1] LLM Data Scientist \u2014 SS&C Technologies: Mentions \"Large Language Model (LLM) Expertise: Leverage your expertise in working with large language models\" and NLP model development\n- [2] Sr. Software Engineer, Search Relevance \u2014 Moveworks: Describes \"search technology to answer enterprise users' tech questions\" using \"modern information retrieval methodology with the latest advancement in natural language understanding,\" involving \"retrieving, matching and ranking text snippets\"\n- [3] Senior Machine Learning Engineer \u2014 GeneDx: References \"advancements in ML and LLM technologies\" and NLP techniques\n- [4] Data Scientist \u2014 hackajob: States \"Develop and train Large Language Models (LLMs) to support the customer mission\" and \"Investigate business processes for innovative implementation of LLMs\"\n- [5] Data Scientist \u2014 hackajob: Identical to [4], with \"Develop and train Large Language Models (LLMs)\" and implementation of LLMs\n\n**Important caveat:** While these postings mention LLMs and retrieval/search concepts, **none of the evidence explicitly mentions \"retrieval-augmented generation\" or \"vector databases\" by name.** Posting [2] comes closest with its discussion of information retrieval and text matching, but the specific terms RAG and vector databases do not appear in the provided excerpts.",
+    "backend": "faiss",
+    "citations": [
+        {
+            "job_id": 3904938734,
+            "title": "LLM Data Scientist",
+            "company": "SS&C Technologies",
+            "location": "Boston, MA",
+            "excerpt": "scope of work includes Forecast, Prediction Models, Outlier Reporting, Risk Analysis, Document classification, Data Extraction, Adhoc analysis.Implementation of Supervised and Unsupervised model development techniques What You Will Bring: Advanced NLP Development: Design, develop, and optimize the Natural Language Processing (NLP) models using state-of-the-art techniques, with a focus on understanding complex language structures, semantics, and context.Large Language Model (LLM) Expertise: Leverage your expertise in working with large language models. Stay up to date with the latest advancements in LLMs and implement strategies for fine-tuning, transfer learning, and adapting these models to specific domains.Quantization and Model Optimization: Implement advanced quantization techniques to optimize deep learning models for efficient deployment on resource-constrained environments, ensuring minimal loss in performance while reducing memory and computational demands.Natural Language Generation (NLG): Utilize your deep knowledge of NLG techniques to develop systems that can generate coherent and contextually relevant human-like text, catering to various applications such as content creation, conversational agents, and data summarization.AI Model Deployment: Take charge of deploying AI models into production environments, collaborating closely with DevOps and software engineering teams to ensure seamless integration, scalability,",
+            "score": 0.46534329652786255
+        },
+        {
+            "job_id": 3904389721,
+            "title": "Sr. Software Engineer, Search Relevance",
+            "company": "Moveworks",
+            "location": "Mountain View, CA",
+            "excerpt": "We are looking for a sr. search relevance engineer to work with a team to improve a search based question answering platform. At Moveworks, we build search technology to answer enterprise users\u2019 tech questions instantly, by combining modern information retrieval methodology with the latest advancement in natural language understanding. Our core Search product value is achieved through the capability of accurately retrieving, matching and ranking text snippets extracted from heterogeneous knowledge sources, as direct answers to users\u2019 requests. You will play a critical role in boosting answer quality by meeting the challenges such as lexical gap, semantic text understanding, and data sparsity. We\u2019re building a team that indexes on moving fast, solving challenging product/engineering problems and providing value to our customers. To be successful, you'll be partnering with product, user experience, customer success and other engineering teams to identify, define and build elegant solutions. Who We Are Moveworks is on a mission to make language the universal UI. We give enterprises a conversational interface that works across every system \u2014 from Microsoft to Workday to Salesforce. Powered by GPT-class machine",
+            "score": 0.46202853322029114
+        },
+        {
+            "job_id": 3905287203,
+            "title": "Senior Machine Learning Engineer",
+            "company": "GeneDx",
+            "location": "United States",
+            "excerpt": "advanced NLP techniques such as named entity recognition, sentiment analysis, and text summarization to enhance report generationContinuously monitor, analyze, and improve the system's performance based on user feedback and advancements in ML and LLM technologiesContribute to the development of a robust, scalable, and secure ML infrastructureOther duties may be assigned Requirements: Advanced degree in Computer Science, Machine Learning, or a related fieldExtensive experience in developing and deploying ML/AI-based systemsStrong Python skillsStrong expertise in natural language processing (NLP) and large language models (LLMs)Experience with LLM libraries such as LangChain, Llama Index, Instructor, DsPy, Outlines, or InstructorExperience with Vector Databases such as Chroma, Weaviate, PineConeProficiency in deep learning frameworks such as TensorFlow, PyTorch, Keras, HuggingFaceExperience with fine-tuning LLMs is a plusExperience with KubernetesExperience with model serving technologies a plus, eg KServe, Ray, vLLM, SkyPilot etc.Experience with ML experiment tracking, CometML, Weights and Biases,Excellent problem-solving, analytical, and communication skillsAbility to work collaboratively in a fast-paced, innovative environmentKnowledge of genetics or experience in the healthcare domain is a plus Business Value Add: By hiring a talented Machine Learning Engineer with expertise in Generative AI,",
+            "score": 0.4525737166404724
+        },
+        {
+            "job_id": 3905875688,
+            "title": "Data Scientist",
+            "company": "hackajob",
+            "location": "McLean, VA",
+            "excerpt": "contribute to formulating recommendations for enhancing engineering solutions. Key Responsibilities Develop and train Large Language Models (LLMs) to support the customer mission.Investigate business processes for innovative implementation of LLMs.Apply data mining techniques to perform statistical analysis.Assist in technical planning activities, including roadmap development and systems integration.Collaborate with customers and contractors regularly, providing technical consultation, coordinating meetings (e.g., TEMs), and preparing/supporting technical briefings.Participate in the development of technical project plans, reports, and contract briefings (e.g., PMR). The ideal candidate will collaborate closely with data scientists, analysts, and customer stakeholders to create and deploy new product features. They will establish scalable, efficient, and automated processes for data analysis, model development, validation, and implementation.",
+            "score": 0.4512350559234619
+        },
+        {
+            "job_id": 3905875652,
+            "title": "Data Scientist",
+            "company": "hackajob",
+            "location": "McLean, VA",
+            "excerpt": "contribute to formulating recommendations for enhancing engineering solutions. Key Responsibilities Develop and train Large Language Models (LLMs) to support the customer mission.Investigate business processes for innovative implementation of LLMs.Apply data mining techniques to perform statistical analysis.Assist in technical planning activities, including roadmap development and systems integration.Collaborate with customers and contractors regularly, providing technical consultation, coordinating meetings (e.g., TEMs), and preparing/supporting technical briefings.Participate in the development of technical project plans, reports, and contract briefings (e.g., PMR). The ideal candidate will collaborate closely with data scientists, analysts, and customer stakeholders to create and deploy new product features. They will establish scalable, efficient, and automated processes for data analysis, model development, validation, and implementation.",
+            "score": 0.4512350559234619
+        }
+    ]
+}
+
+=== RAG demo 2/2 — comparison / synthesis ===
+Q: Which skills distinguish Machine Learning Engineer roles from Data Scientist roles?
+{
+    "query": "Which skills distinguish Machine Learning Engineer roles from Data Scientist roles?",
+    "answer": "# Skills Distinguishing Machine Learning Engineers from Data Scientists\n\nBased on the provided evidence, Machine Learning Engineers distinguish themselves from Data Scientists in the following ways:\n\n## Implementation and Production Focus\nMachine Learning Engineers emphasize **model deployment and production implementation**. They [1] \"Deploy machine learning models into production environments\" and \"Work closely with DevOps teams to ensure scalability, reliability, and security.\" They also [5] \"Design and implement infrastructure and platform components for training, deploying, and monitoring machine learning models in production.\"\n\n## Infrastructure and Operations\nMachine Learning Engineers build **data pipelines and infrastructure**. They [5] \"Build pipelines to ingest data from myriad sources into a centralized data lake for various use cases.\"\n\n## Monitoring and Optimization at Scale\nMachine Learning Engineers [1] \"Implement monitoring solutions to track model performance in real-time\" and work to maintain models in operational environments.\n\n## Leadership and Implementation Skills\nNotably, one job posting [4] explicitly states: \"This manager is NOT looking for a Data Scientist, instead he's looking for a Machine Learning engineer that can **truly implement/lead**. Traditionally Data Scientists do not do this.\"\n\nIn contrast, the evidence does not provide specific details about what distinguishes Data Scientist roles, limiting a complete comparative analysis. The evidence suggests Machine Learning Engineers are more focused on the **engineering, deployment, infrastructure, and operational aspects** of machine learning systems, whereas the distinction from Data Scientists' typical responsibilities is implied but not explicitly detailed.",
+    "backend": "faiss",
+    "citations": [
+        {
+            "job_id": 3905869109,
+            "title": "Lead Machine Learning Engineer",
+            "company": "Confidential Jobs",
+            "location": "United States",
+            "excerpt": "from data to improve model performance.Utilize domain knowledge to engineer features that capture important patterns.Model Deployment:Deploy machine learning models into production environments.Work closely with DevOps teams to ensure scalability, reliability, and security. Monitoring And Optimization Implement monitoring solutions to track model performance in real-time.Continuously fine-tune and optimize models to maintain or improve accuracy.Collaboration and Communication:Collaborate with cross-functional teams, including data scientists, software engineers, and domain experts.Clearly communicate technical findings and insights to both technical and non-technical stakeholders. Research And Innovation Stay up-to-date with the latest developments in machine learning and artificial intelligence.Experiment with emerging technologies and techniques to drive innovation within the organization. Qualifications The ideal candidate will have a background in Python, have experience working with large data sets, annotating and formatting data for ML, and have experience in building Machine Learning Platforms, applying Machine Learning, and deploying data-driven solutionsMaster's or PhD degree in Computer Science, Machine Learning, Data Science, or a related field (Ph.D. preferred).Proven experience (7+ years) as a Machine Learning Engineer or a similar role.Proficiency in machine learning frameworks (e.g., TensorFlow, PyTorch) and programming languages like",
+            "score": 0.6239186525344849
+        },
+        {
+            "job_id": 3899540477,
+            "title": "Machine Learning Engineer",
+            "company": "Cloud Resources LLC",
+            "location": "New York, NY",
+            "excerpt": "Company Description Cloud Resources is a highly motivated and results-oriented consulting firm specializing in next-generation Software Development, Technology, and Cloud Services. We provide top-quality services and solutions in software and application development, technology consulting, infrastructure services, cloud, and big data technologies. Our focus is on nurturing long-term relationships with clients of all sizes, both nationally and globally. Role Description This is a contract role for a Machine Learning Engineer at Cloud Resources LLC. As a Machine Learning Engineer, you will be responsible for developing and implementing machine learning algorithms and models, analyzing large datasets, and collaborating with cross-functional teams to design and deploy machine learning solutions. This is a hybrid role, with the majority of the work located in New York, NY, and flexibility for some remote work. Qualifications Strong knowledge in Pattern Recognition and Neural NetworksProficiency in Computer Science and StatisticsExperience with Algorithms and Data StructuresHands-on experience in machine learning frameworks and librariesFamiliarity with cloud platforms and big data technologiesExcellent problem-solving and analytical skillsStrong programming skills in languages such as Python or RGood communication and collaboration skillsMaster's or PhD",
+            "score": 0.6210625171661377
+        },
+        {
+            "job_id": 3901980816,
+            "title": "Machine Learning Researcher, Machine Learning Operations Engineer, Sr. Software Developer, Assoc Software Developer",
+            "company": "Deep Voodoo",
+            "location": "California, United States",
+            "excerpt": "Direct hire only, no 3rd party. 1 ML Researcher1 ML Operations Engineer1 Sr Software Engineer3 Assoc. Software Developer All rolls are remote. Reach out for any questions you might have about any of the roles and I can share more details about them.",
+            "score": 0.6043631434440613
+        },
+        {
+            "job_id": 3902371576,
+            "title": "Machine Learning Engineer",
+            "company": "Indotronix Avani Group",
+            "location": "Pennsylvania, United States",
+            "excerpt": "Position: Machine Learning EngineerIntended length of assignment: 6 Months to Hire Location: Hybrid - 3 in office, 2 remote1st preference Tech Hubs (Pittsburgh, PA, Birmingham, Alabama, Dallas, TX, Cleveland, OH, Phoenix, AZ 2850 E Camelback Road)2nd preference - Remote if not near tech hub, exhaust 1st preference. Reason for opening is additional needThis manager is NOT looking for a Data Scientist, instead he's looking for a Machine Learning engineer that can truly implement/lead. Traditionally Data Scientists do not do this. Per the manager, finding a 100% match of skills will be difficult. The more aligned skills they have, the better.Organizational Structure And Impact:Describe the function your group supports from an LOB perspective:Experienced ML engineer to work on universal forecasting models. Focus on ML forecasting, Python and Hadoop. Experience with Python, ARIMA, FB Prophet, Seasonal Naive, Gluon.Data Science Innovation (DSI) is a very unique application. It is truly ML-driven at its heart and our forecasting models originally looked singularly at cash balance forecasting. That has all changed as we have now incorporated approximately 100 additional financial metrics from our new DSI",
+            "score": 0.601559579372406
+        },
+        {
+            "job_id": 3902861372,
+            "title": "Staff Machine Learning Engineer (Customer Identity)",
+            "company": "Okta",
+            "location": "United States",
+            "excerpt": "machine learning. Additionally, the candidate will have interest in learning about and potentially contributing toward cutting edge open source Machine Learning and Data Science technologies. Responsibilities Design and implement infrastructure and platform components for training, deploying, and monitoring machine learning models in production.Build pipelines to ingest data from myriad sources into a centralized data lake for various use cases.Collaborate with production engineering teams to ensure that machine learning models integrate successfully into production environments while adhering to performance and availability SLOs.Participate in project planning, design, development, and code reviews. Communicate verbally and in writing to business customers and leadership teams with various levels of technical knowledge, educating them about our systems, as well as sharing insights and recommendations.Partnership across Engineering, Product Management, Security and Design teams to solve technical and non-technical challenges. Basic Qualifications Bachelor's degree in Computer Science, Engineering, Statistics or a related quantitative field. Fluency in a computing language, e.g. Python, Scala, C++, Java, etc.Experience with building production systems and platforms at scale. Familiar with full AI/ML lifecycle from model development, training, testing, deployment, monitoring, and refining and",
+            "score": 0.5976731181144714
+        }
+    ]
+}
+=== KG demo — required question ===
+Q: Which companies hire for both data engineering and ML engineering roles, and what skills connect them?
+{
+    "role_a": "Data Engineer",
+    "role_b": "Machine Learning Engineer",
+    "num_companies_role_a": 253,
+    "num_companies_role_b": 99,
+    "bridging_companies": [
+        {
+            "company": "Akkodis",
+            "postings_a": [
+                3894213406,
+                3894299338,
+                3894400441
+            ],
+            "postings_b": [
+                3901166848,
+                3901803271
+            ],
+            "shared_skills": [
+                "Java",
+                "Machine Learning",
+                "Python",
+                "SQL",
+                "Spark",
+                "Statistics"
+            ]
+        },
+        {
+            "company": "Booz Allen Hamilton",
+            "postings_a": [
+                3903846324,
+                3903846326
+            ],
+            "postings_b": [
+                3894616657
+            ],
+            "shared_skills": [
+                "Agile",
+                "Machine Learning"
+            ]
+        },
+        {
+            "company": "Capital One",
+            "postings_a": [
+                3885805686,
+                3885806687,
+                3885808491,
+                3885810350,
+                3885810353,
+                3894291104,
+                3902782722,
+                3902785272,
+                3902786201,
+                3903802633,
+                3904049996,
+                3904052744,
+                3904054114,
+                3904574894,
+                3904574897,
+                3904574898,
+                3904575804,
+                3904578558,
+                3904581374,
+                9900000,
+                9900001,
+                9900002
+            ],
+            "postings_b": [
+                3902780915,
+                3902780922,
+                3902780923,
+                3902780924,
+                3902781837
+            ],
+            "shared_skills": [
+                "AWS",
+                "Agile",
+                "Azure",
+                "CI/CD",
+                "GCP",
+                "Java",
+                "Machine Learning",
+                "Python",
+                "SQL",
+                "Scala",
+                "Spark"
+            ]
+        },
+        {
+            "company": "ChabezTech LLC",
+            "postings_a": [
+                3901349539
+            ],
+            "postings_b": [
+                3904730096
+            ],
+            "shared_skills": [
+                "Azure",
+                "Python"
+            ]
+        },
+        {
+            "company": "Dice",
+            "postings_a": [
+                3904950518,
+                3905873960,
+                3905885197
+            ],
+            "postings_b": [
+                3904950219,
+                3905886091
+            ],
+            "shared_skills": [
+                "Python"
+            ]
+        },
+        {
+            "company": "Harnham",
+            "postings_a": [
+                3906078214,
+                3906078751
+            ],
+            "postings_b": [
+                3905236643,
+                3906081231
+            ],
+            "shared_skills": [
+                "Python",
+                "SQL"
+            ]
+        },
+        {
+            "company": "Mainz Brady Group",
+            "postings_a": [
+                3884855386
+            ],
+            "postings_b": [
+                3891003141,
+                3891800645
+            ],
+            "shared_skills": [
+                "Python",
+                "Spark"
+            ]
+        },
+        {
+            "company": "McKesson",
+            "postings_a": [
+                3894953007
+            ],
+            "postings_b": [
+                3905345886
+            ],
+            "shared_skills": [
+                "Azure",
+                "Python"
+            ]
+        },
+        {
+            "company": "Motion Recruitment",
+            "postings_a": [
+                3895547335,
+                3901626774,
+                3904955360
+            ],
+            "postings_b": [
+                3888941778,
+                3888943511,
+                3888944326
+            ],
+            "shared_skills": []
+        },
+        {
+            "company": "NLB Services",
+            "postings_a": [
+                3905214221
+            ],
+            "postings_b": [
+                3871631334,
+                3887100819
+            ],
+            "shared_skills": [
+                "Azure"
+            ]
+        },
+        {
+            "company": "Orbit Recruitment Group ",
+            "postings_a": [
+                3905208625,
+                3905208753,
+                3905210695,
+                3905211480
+            ],
+            "postings_b": [
+                3905211810,
+                3905213817,
+                3905215365
+            ],
+            "shared_skills": [
+                "AWS",
+                "Machine Learning",
+                "Python"
+            ]
+        },
+        {
+            "company": "TikTok",
+            "postings_a": [
+                3888994430
+            ],
+            "postings_b": [
+                3895584708,
+                3895587299,
+                3895587302,
+                3895595256,
+                3904983008,
+                3905313958
+            ],
+            "shared_skills": [
+                "Python"
+            ]
+        }
+    ],
+    "shared_skills_overall": [
+        "Python",
+        "SQL",
+        "AWS",
+        "Machine Learning",
+        "Azure",
+        "Spark",
+        "ETL",
+        "Agile",
+        "Java",
+        "Data Warehousing"
+    ]
+}
