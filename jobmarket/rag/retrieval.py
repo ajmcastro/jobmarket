@@ -1,4 +1,18 @@
-"""Query embedding + vector search + de-duplication by posting."""
+"""Query embedding + vector search + de-duplication by posting.
+
+   A potential improvement is to do an Hybrid Search, where we filter by a keyword search (e.g. BM25) 
+   and then, also, by embedding similarity. 
+   For example, using langchain we could use the `BM25Retriever` to filter the postings by keyword, and then use the `EnsembleRetriever` like:
+   
+   hybrid_retriever = EnsembleRetriever(
+    retrievers=[bm25_retriever, vector_retriever],
+    weights=[0.5, 0.5]
+    )
+
+    results = hybrid_retriever.invoke(query)
+   
+   This is not implemented here, but could be added in the future.
+"""
 
 import pandas as pd
 from sentence_transformers import SentenceTransformer

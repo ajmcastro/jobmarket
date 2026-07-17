@@ -152,23 +152,46 @@ flowchart LR
 
 > **Notes:** The FAISS-vs-turbovec comparison in the notebook shows near-identical top-5 results and
 > scores — validates the quantized index without yet needing its main benefit (memory at scale).
+
 > A typical split-chunk strategy based in a fixed size is implemented in split_into_chunks. A slighthly improved version that considers sentence-aware boundaries is implemented in improved_split_into_chunks.
+
+> On the retrieval side it was used vector search (by similarity) plus sorted by score. An improvement can be to use an Hybrid search through an EnsembleRetriever (BM25Retriever + Vector Search Retriever)  
 
 ---
 
 ## Part 1 — Demo
 
-**Q:** *"Which postings mention retrieval-augmented generation, vector databases, or LLM application development?"*
+**Q1:** *"Which postings mention retrieval-augmented generation, vector databases, or LLM application development?"*
+
+Top result: **LLM Data Scientist** @ SS&C Technologies (Boston, MA)
+> *"...Large Language Model (LLM) Expertise: Leverage your expertise in working with large language models" and advanced NLP model development..."*
+
+Citations:
+
+  [1] job_id=3904938734 | LLM Data Scientist | SS&C Technologies | Boston, MA | score=0.465
+      "scope of work includes Forecast, Prediction Models, Outlier Reporting, Risk Analysis, Document classification, Data Extraction, Adhoc analysis.Implementation of..."
+
+  [2] job_id=3904389721 | Sr. Software Engineer, Search Relevance | Moveworks | Mountain View, CA | score=0.462
+      "We are looking for a sr. search relevance engineer to work with a team to improve a search based question answering platform. At Moveworks, we build search tech..."
+
+  [3] job_id=3905287203 | Senior Machine Learning Engineer | GeneDx | United States | score=0.453
+      "advanced NLP techniques such as named entity recognition, sentiment analysis, and text summarization to enhance report generationContinuously monitor, analyze,..."
+
+  [4] job_id=3905875688 | Data Scientist | hackajob | McLean, VA | score=0.451
+      "contribute to formulating recommendations for enhancing engineering solutions. Key Responsibilities Develop and train Large Language Models (LLMs) to support th..."
+
+  [5] job_id=3905875652 | Data Scientist | hackajob | McLean, VA | score=0.451
+      "contribute to formulating recommendations for enhancing engineering solutions. Key Responsibilities Develop and train Large Language Models (LLMs) to support th..."
+
+
+**Q2:** *"Which skills distinguish Machine Learning Engineer roles from Data Scientist roles?"*
 
 Top result: **LLM Data Scientist** @ SS&C Technologies (Boston, MA) — score 0.465
-> *"...scope of work includes Forecast, Prediction Models, Outlier Reporting, Risk Analysis, Document
-> classification, Data Extraction, Adhoc analysis. Implementation of Supervised and Unsupervised model
-> development techniques..."*
+> *"...Large Language Model (LLM) Expertise: Leverage your expertise in working with large language models" and advanced NLP model development..."*
 
 Found purely by semantic similarity, no keyword list required.
 
-> **Notes:** This is the "direct retrieval" demo type — open-ended, no fixed taxonomy, exactly what
-> embeddings are good at. Note this ran in mock mode in this environment (no API key) — the citations and
+> **Notes:** This is the "direct retrieval" demo type — open-ended, no fixed taxonomy. Note this ran in mock mode in this environment (no API key) — the citations and
 > retrieval quality are unaffected either way.
 
 ---
