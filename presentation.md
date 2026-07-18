@@ -169,27 +169,32 @@ Top result: **LLM Data Scientist** @ SS&C Technologies (Boston, MA)
 Citations:
 
   [1] job_id=3904938734 | LLM Data Scientist | SS&C Technologies | Boston, MA | score=0.465
-      "scope of work includes Forecast, Prediction Models, Outlier Reporting, Risk Analysis, Document classification, Data Extraction, Adhoc analysis.Implementation of..."
 
   [2] job_id=3904389721 | Sr. Software Engineer, Search Relevance | Moveworks | Mountain View, CA | score=0.462
-      "We are looking for a sr. search relevance engineer to work with a team to improve a search based question answering platform. At Moveworks, we build search tech..."
 
   [3] job_id=3905287203 | Senior Machine Learning Engineer | GeneDx | United States | score=0.453
-      "advanced NLP techniques such as named entity recognition, sentiment analysis, and text summarization to enhance report generationContinuously monitor, analyze,..."
 
   [4] job_id=3905875688 | Data Scientist | hackajob | McLean, VA | score=0.451
-      "contribute to formulating recommendations for enhancing engineering solutions. Key Responsibilities Develop and train Large Language Models (LLMs) to support th..."
 
   [5] job_id=3905875652 | Data Scientist | hackajob | McLean, VA | score=0.451
-      "contribute to formulating recommendations for enhancing engineering solutions. Key Responsibilities Develop and train Large Language Models (LLMs) to support th..."
-
 
 **Q2:** *"Which skills distinguish Machine Learning Engineer roles from Data Scientist roles?"*
 
-Top result: **LLM Data Scientist** @ SS&C Technologies (Boston, MA) — score 0.465
-> *"...Large Language Model (LLM) Expertise: Leverage your expertise in working with large language models" and advanced NLP model development..."*
+Top result: **Lead Machine Learning Engineer** @ Confidential Jobs (United States).
 
-Found purely by semantic similarity, no keyword list required.
+>*"... from data to improve model performance.Utilize domain knowledge to engineer features that capture important patterns.Model Deployment:Deploy machine learning models into production environments.Work closely with DevOps..."*
+
+Citations:
+
+[1] job_id=3905869109 | Lead Machine Learning Engineer |Confidential Jobs | United States | score=0.624
+
+[2] job_id=3901980816 | Machine Learning Researcher | Deep Voodoo | California, United States | score=0.604
+
+[3] job_id=3902371576 | Machine Learning Engineer | Indotronix Avani Group | Pennsylvania, United States | score=0.602
+
+[4] job_id=3902861372 | Staff Machine Learning Engineer (Customer Identity) | Okta | United States | score=0.598
+
+Answers to both questions found purely by semantic similarity, no keyword list required.
 
 > **Notes:** This is the "direct retrieval" demo type — open-ended, no fixed taxonomy. Note this ran in mock mode in this environment (no API key) — the citations and
 > retrieval quality are unaffected either way.
@@ -208,7 +213,7 @@ flowchart LR
 
 Built with **NetworkX** — no server, easy to inspect in-notebook, more than sufficient at this scale.
 
-**Not implemented:** `Industry` (no reliable join key in this sample), `Occupation`/ESCO enrichment
+**Not implemented:** `Industry` (There is no way of relating a company or posting to an industry), `Occupation`/ESCO enrichment
 (optional, out of scope), `Skill–RELATED_TO–Skill` (not needed for the target questions).
 
 > **Notes:** Deliberately small schema — four node types, four edge types, chosen because they
@@ -218,8 +223,7 @@ Built with **NetworkX** — no server, easy to inspect in-notebook, more than su
 
 ## Part 2 — Key decisions
 
-- **`Role`** derived from `title` via an ordered keyword taxonomy (~10 canonical roles, most-specific wins) —
-  not the raw, messy title strings.
+- **`Role`** derived from `title` via an ordered keyword taxonomy (~10 canonical roles) — not the raw, messy title strings.
 - **`Skill`** extracted from posting text via a curated ~50-term vocabulary with symbol-aware regex
   (handles `C++`, `CI/CD`, `Node.js`) — *not* `sample_skills.csv`'s coarse categories.
 - **`Company`** keyed by normalized name, not `company_id` — trades perfect de-dup for actually connecting
@@ -234,7 +238,7 @@ Built with **NetworkX** — no server, easy to inspect in-notebook, more than su
 
 **Q:** *"Which companies hire for both data engineering and ML engineering roles, and what skills connect them?"*
 
-Answered by **traversal + set intersection** — no query language needed at this scale:
+Answered by graph edge **traversal/neighbor lookup (no BFS/DFS search)** + basic **set aggregation (set intersection + frequency counting)**:
 
 - `Data Engineer` postings appear at **253** companies; `Machine Learning Engineer` at **99**.
 - **12 companies** post both: Capital One, TikTok, Akkodis, Booz Allen Hamilton, Dice, Harnham,
@@ -252,7 +256,7 @@ Every result carries the exact `job_id`s that justify it — fully traceable bac
 
 ## Part 3 — Where RAG-only falls short
 
-Evidence from Part 1's own demos, not hypothetical:
+Evidence from Part 1's own demos:
 
 - **"Given Python, SQL, Docker, NLP — what adjacent roles?"** — RAG surfaced a *Mainframe/SQL/ETL* posting
   as a top match. Vector similarity matched on keyword overlap, with no notion of "how close is this role,
@@ -261,9 +265,6 @@ Evidence from Part 1's own demos, not hypothetical:
   genuine *difference* needs a comparison over two full frequency distributions, not a handful of excerpts.
 - **Vector top-k is a sample** (k≈5–8 of 16,378 chunks). Exhaustive questions — "which companies do X *and*
   Y," "what fraction mention Z" — can't be answered correctly by sampling, regardless of embedding quality.
-
-> **Speaker notes:** This slide is the pitch for why Graph-RAG matters — not abstract, these are real
-> weaknesses observed in this project's own demo output.
 
 ---
 
@@ -278,13 +279,37 @@ flowchart TD
     S4 --> A[Grounded, cited answer]
 ```
 
-- **Graph step** contributes what vector search structurally cannot: exhaustive counts, set
-  intersection/difference, co-occurrence, canonicalized entities, traversal provenance.
-- **Vector step** stays for what the graph can't do: free-text semantic matching and quotable excerpts.
+### What and how for each step
 
-> **Speaker notes:** This is the "not implemented" deliverable — an architecture, not code. Stage 3 reuses
+- **1. Query parsing**
+  - What: identify the user’s intent and the key entities in the question: roles, skills, companies, locations, and comparison-type requests.
+  - How: run lightweight text parsing and normalization over the question, mapping synonyms to canonical graph entities using the role taxonomy and skill vocabulary already built in Part 2.
+  - Example: turn “adjacent roles for Python, SQL, Docker, NLP” into `{skills: [Python, SQL, Docker, NLP], intent: role-similarity}`.
+
+- **2. Graph traversal**
+  - What: perform exact structural reasoning over the KG to answer membership, overlap, co-occurrence, and set-difference queries.
+  - How: use NetworkX traversal and neighbor aggregation on nodes like `Role`, `Skill`, `Company`, and `JobPosting`, then compute candidate job_ids, joint skill sets, and provenance counts.
+  - Example: find all `JobPosting` nodes linked to both `Data Engineer` and `Machine Learning Engineer` roles, and aggregate the shared skill neighbors.
+
+- **3. Graph-guided vector retrieval**
+  - What: retrieve free-text evidence only from graph-validated candidates, so the semantic search stays grounded in the relevant subset.
+  - How: restrict the vector store search to the candidate `job_id` set from the graph (allowlist filtering or per-posting scope), then rank chunk embeddings by similarity to the original query.
+  - Example: for a top-ranked role candidate, return the best matching description chunks from that role’s postings, not from unrelated corpus-wide hits.
+
+- **4. Answer generation**
+  - What: merge graph-derived facts with quotable excerpts into a single grounded response with citations and provenance.
+  - How: format a final answer using the graph’s counts/relations plus the selected text excerpts; optionally use an LLM or template-based generator to produce fluent language while preserving explicit evidence.
+  - Example: answer “what adjacent roles are relevant” by naming roles from graph overlap and citing postings plus exact excerpt text.
+
+- **Why it works**
+  - Graph step covers exhaustive structural reasoning (counts, intersections, role-skill profiles).
+  - Vector step covers free-text semantic grounding (natural-language evidence and quoteable excerpts).
+
+> **Notes:** This is the "not implemented" deliverable — an architecture, not code. Stage 3 reuses
 > the `turbovec` allowlist-search pattern already documented in Part 1 — narrow candidates first via the
 > graph, then rank by embedding similarity only within that set.
+
+>A possible alternative can be to used a wiki-style knowledge base (KB). For example, as presented here: https://github.com/VectifyAI/OpenKB 
 
 ---
 
@@ -301,8 +326,6 @@ Graph-aware fix for the Mainframe/SQL/ETL false positive seen earlier:
    (e.g. "ML Engineer also commonly requires: AWS, Kubernetes, Spark").
 4. Hand the top matching postings to vector retrieval for a quotable excerpt.
 
-> **Speaker notes:** This directly fixes the specific failure mode shown two slides ago — worth pointing
-> back at that slide for contrast.
 
 ---
 
@@ -318,8 +341,6 @@ Graph-aware fix for the Mainframe/SQL/ETL false positive seen earlier:
   is explicitly optional (ESCO/O*NET) and out of scope.
 - **Graph-RAG is design-only** — the biggest opportunity for follow-up work.
 
-> **Speaker notes:** Be upfront about these — they're scoped decisions, not oversights, and each is
-> documented with its rationale in the notebook.
 
 ---
 
@@ -331,8 +352,6 @@ Graph-aware fix for the Mainframe/SQL/ETL false positive seen earlier:
 - Optional ESCO/O*NET enrichment for the `Occupation` layer.
 - Build a small evaluation set (golden Q&A pairs) to measure retrieval/answer quality objectively.
 
-> **Speaker notes:** Prioritize by what a real DS/ML team would actually feel the absence of first — likely
-> Graph-RAG implementation and an eval harness.
 
 ---
 
@@ -343,4 +362,3 @@ Graph-aware fix for the Mainframe/SQL/ETL false positive seen earlier:
 - Notebook: `mleng_take_home_task.ipynb`
 - Setup & design note: `README.md`
 
-> **Speaker notes:** Open the floor. Have the notebook open and ready to re-run a live query if asked.
