@@ -18,11 +18,9 @@ Target: ~15 minutes, ~17 slides (~50s/slide average — title/agenda/closing go 
 
 >Agent mode was used to produce documentation, including this README.md and the presentation.md file.
 
->The code architecture for the jobmarket package plus the API were done following my typical 'boilerplate code' for this kind of projects. Although the code architecture is based in production ready applications, the version presented here is incomplete, as such, not ready for production.
+>The code architecture for the jobmarket package plus the API were done following 'boilerplate code' for testing this kind of projects. The version presented here is not ready for production.
 
->Some alternative approaches related with parts of the RAG process, for example, a different embeddings strategy or the use of turbovec, are based on developments I have done for other projects.
-
->A critical analysis and review was done by me, although not exhaustive.
+>Some alternative approaches related with parts of the RAG process, for example, a different embeddings strategy or the use of turbovec, are based on experiments and/or developments I have done for other projects.
 
 ---
 
