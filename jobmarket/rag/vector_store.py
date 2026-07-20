@@ -1,4 +1,9 @@
-"""Vector-search backends sitting behind a common interface: exact FAISS and quantized turbovec."""
+"""
+Vector-search backends sitting behind a common interface: exact FAISS and quantized turbovec.
+
+A framework like LangChain provides several vector store integration options.
+URL: https://docs.langchain.com/oss/python/integrations/vectorstores
+"""
 
 import numpy as np
 import faiss

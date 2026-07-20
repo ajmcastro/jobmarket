@@ -155,8 +155,18 @@ flowchart LR
 
 > A typical split-chunk strategy based in a fixed size is implemented in split_into_chunks. A slighthly improved version that considers sentence-aware boundaries is implemented in improved_split_into_chunks.
 
-> On the retrieval side it was used vector search (by similarity) plus sorted by score. An improvement can be to use an Hybrid search through an EnsembleRetriever (BM25Retriever + Vector Search Retriever)  
+> On the retrieval side it was used vector search (by similarity) plus sorted by score. An improvement can be to use an Hybrid search through an EnsembleRetriever (BM25Retriever + Vector Search Retriever) 
 
+> A framework like LangChain provides:
+-  multiple chunking strategies:
+https://docs.langchain.com/oss/python/integrations/splitters
+- multiple embedding models integration, as well as, guidelines 
+and metrics for selecting the best embedding model for your use case:
+https://docs.langchain.com/oss/python/integrations/embeddings
+- several vector store integration options:
+https://docs.langchain.com/oss/python/integrations/vectorstores
+- several document loader integrations:
+https://docs.langchain.com/oss/python/integrations/document_loaders
 ---
 
 ## Part 1 — Demo

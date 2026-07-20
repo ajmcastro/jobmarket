@@ -1,4 +1,8 @@
-"""Splitting posting text into overlapping word chunks for embedding."""
+"""
+Splitting posting text into overlapping word chunks for embedding.
+A framework like LangChain provide multiple chunking strategies.
+URL: https://docs.langchain.com/oss/python/integrations/splitters
+"""
 
 import pandas as pd
 import re

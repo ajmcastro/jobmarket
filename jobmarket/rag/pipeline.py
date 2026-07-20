@@ -6,6 +6,11 @@ the next build() call instead of being recomputed. The embedder and vector-store
 themselves are cheap to rebuild from cached embeddings (no re-encoding), so only the corpus
 DataFrame and the embedding matrix need to survive on disk. Delete CACHE_DIR to force a rebuild
 (e.g. after changing chunk size, the embedding model, or the source CSVs).
+
+A framework like LangChain provide multiple embedding models integration, as well as, guidelines 
+and metrics for selecting the best embedding model for your use case.
+URL: https://docs.langchain.com/oss/python/integrations/embeddings
+
 """
 
 from dataclasses import dataclass, field
