@@ -148,7 +148,10 @@ flowchart LR
 - **Citations are structural, not just a quote** — every answer returns `job_id`, title, company, location,
   and excerpt, so a reviewer can verify the source posting directly.
 
-> **Notes:** The FAISS-vs-turbovec comparison in the notebook shows near-identical top-5 results and
+> **Notes:** 
+> Using a larger model like OpenAI’s text-embedding-3-large (3072 dimensions - instead of the 348 of the model used), would improve the search quality, although requiring more computer resources.
+
+> The FAISS-vs-turbovec comparison in the notebook shows near-identical top-5 results and
 > scores — validates the quantized index without yet needing its main benefit (memory at scale).
 
 > A typical split-chunk strategy based in a fixed size is implemented in split_into_chunks. A slighthly improved version that considers sentence-aware boundaries is implemented in improved_split_into_chunks.
